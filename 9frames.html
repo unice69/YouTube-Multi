@@ -1,101 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Multi-View</title>
-    <link rel="icon" type="image/x-icon" href="IMG-1.ico">
-    <style>
-        body {
-            margin: 0;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .video-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 横3列 */
-            grid-template-rows: repeat(3, 1fr); /* 縦3列 */
-            width: 100vw;
-            height: 100vh;
-            gap: 1px;
-        }
-        .video-wrapper {
-            position: relative;
-            text-align: center;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .number-label {
-            position: absolute;
-            bottom: 10px; /* 位置を少し調整 */
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 16px;
-            color: white;
-            font-family: Arial, sans-serif;
-            
-            /* --- ここから追加 --- */
-            background-color: rgba(0, 0, 0, 0.7); /* 半透明の黒い背景 */
-            padding: 5px 10px; /* 文字の周りの余白 */
-            border-radius: 5px; /* 角を丸くする */
-            /* --- ここまで追加 --- */
-        }
-        @media screen and (max-width: 768px) {
-            .number-label {
-                font-size: 14px; /* スマホ時に文字サイズを縮小 */
-            }
-        }
-        .video-wrapper:nth-child(2) .number-label,
-        .video-wrapper:nth-child(5) .number-label,
-        .video-wrapper:nth-child(6) .number-label {
-            background-color: rgba(255, 0, 0, 0.7); /* 赤の半透明背景 */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Multi-View</title>
+  <link rel="icon" type="image/x-icon" href="IMG-1.ico" />
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .video-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      width: 100vw;
+      height: 100vh;
+      gap: 1px;
+    }
+    .video-wrapper {
+      position: relative;
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .number-label {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      color: white;
+      font-family: Arial, sans-serif;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    @media screen and (max-width: 768px) {
+      .number-label {
+        font-size: 14px;
+      }
+    }
+    .video-wrapper:nth-child(2) .number-label,
+    .video-wrapper:nth-child(5) .number-label {
+      background-color: rgba(255, 0, 0, 0.7);
+    }
+    .switch-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+    }
+    .switch-button button {
+      padding: 8px 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="video-container">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/54ZyYMfyGnE?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">沖縄県 宜野湾↗</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/h3pbOPE3kLs?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">沖縄 那覇空港↙</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/6HYjCFkmDPA?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">沖縄 那覇市内↘</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/EL57ZkKmAo4?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">沖縄 宮古島市↙</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/FN6RqgaUr4M?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">沖縄 宮古島市↓</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/pZB2-5Q5iYo?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">沖縄県 石垣島↓</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/cPClFiW0y3w?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">神奈川県 湘南↙</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/_Upz1dlQgpg?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">静岡 下田白浜→</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/T3uOuFisD4A?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">宮崎県 日南市→</div>
-        </div>
+  <div class="video-container">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/54ZyYMfyGnE?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">沖縄県 宜野湾↗</div>
     </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/h3pbOPE3kLs?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">沖縄 那覇空港↙</div>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/6HYjCFkmDPA?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">沖縄 那覇市内↘</div>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/EL57ZkKmAo4?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">沖縄 宮古島市↙</div>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/FN6RqgaUr4M?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">沖縄 宮古島市↓</div>
+    </div>
+    <div class="video-wrapper" id="frame6">
+      <iframe src="https://www.youtube.com/embed/pZB2-5Q5iYo?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">沖縄県 石垣島↓</div>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/cPClFiW0y3w?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">神奈川県 湘南↙</div>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/_Upz1dlQgpg?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">静岡 下田白浜→</div>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/T3uOuFisD4A?autoplay=1" allow="autoplay"></iframe>
+      <div class="number-label">宮崎県 日南市→</div>
+    </div>
+  </div>
+
+  <div class="switch-button">
+    <button onclick="switchVideo()">切り替え</button>
+  </div>
+
+  <script>
+    let isFirst = true;
+    function switchVideo() {
+      const wrapper = document.getElementById("frame6");
+      const iframe = wrapper.querySelector("iframe");
+      const label = wrapper.querySelector(".number-label");
+
+      if (isFirst) {
+        iframe.src = "https://www.youtube.com/embed/jvWOUSh_5gQ?autoplay=1";
+        label.textContent = "沖縄県 石垣島↖";
+      } else {
+        iframe.src = "https://www.youtube.com/embed/pZB2-5Q5iYo?autoplay=1";
+        label.textContent = "沖縄県 石垣島↓";
+      }
+
+      isFirst = !isFirst;
+    }
+  </script>
 </body>
 </html>
