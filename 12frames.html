@@ -52,19 +52,6 @@
     .video-wrapper:nth-child(7) .number-label {
       background-color: rgba(255, 0, 0, 0.7);
     }
-    .switch-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 999;
-    }
-    .switch-button button {
-      padding: 8px 14px;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -101,7 +88,7 @@
       <iframe src="https://www.youtube.com/embed/EL57ZkKmAo4?autoplay=1" allow="autoplay"></iframe>
       <div class="number-label">沖縄県 宮古島↙</div>
     </div>
-    <div class="video-wrapper" id="frame9">
+    <div class="video-wrapper">
       <iframe src="https://www.youtube.com/embed/fAs6fdTKOM4?autoplay=1" allow="autoplay"></iframe>
       <div class="number-label">沖縄県 石垣島↓</div>
     </div>
@@ -118,28 +105,5 @@
       <div class="number-label">宮崎県 日南市→</div>
     </div>
   </div>
-
-  <div class="switch-button">
-    <button onclick="switchVideo()">切り替え</button>
-  </div>
-
-  <script>
-    let isFirst = true;
-    function switchVideo() {
-      const wrapper = document.getElementById("frame9");
-      const iframe = wrapper.querySelector("iframe");
-      const label = wrapper.querySelector(".number-label");
-
-      if (isFirst) {
-        iframe.src = "https://www.youtube.com/embed/yFgYzAsmVJE?autoplay=1";
-        label.textContent = "沖縄県 石垣島↑";
-      } else {
-        iframe.src = "https://www.youtube.com/embed/fAs6fdTKOM4?autoplay=1";
-        label.textContent = "沖縄県 石垣島↓";
-      }
-
-      isFirst = !isFirst;
-    }
-  </script>
 </body>
 </html>
