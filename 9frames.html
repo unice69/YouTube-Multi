@@ -49,49 +49,40 @@
       }
     }
     .video-wrapper:nth-child(2) .number-label,
-    .video-wrapper:nth-child(5) .number-label {
+    .video-wrapper:nth-child(5) .number-label,
+    .video-wrapper:nth-child(6) .number-label {
       background-color: rgba(255, 0, 0, 0.7);
     }
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/54ZyYMfyGnE?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">沖縄県 宜野湾↘</div>
-    </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/h3pbOPE3kLs?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">沖縄 那覇空港↖</div>
-    </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/6HYjCFkmDPA?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">沖縄 那覇市内↗</div>
-    </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/EL57ZkKmAo4?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">沖縄 宮古島市↖</div>
-    </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/FN6RqgaUr4M?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">沖縄 宮古島市↑</div>
-    </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/fAs6fdTKOM4?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">沖縄県 石垣島↑</div>
-    </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/cPClFiW0y3w?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">神奈川県 湘南↖</div>
-    </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/_Upz1dlQgpg?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">静岡 下田白浜→</div>
-    </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/T3uOuFisD4A?autoplay=1" allow="autoplay"></iframe>
-      <div class="number-label">宮崎県 日南市→</div>
-    </div>
-  </div>
+  <div class="video-container" id="videoContainer"></div>
+
+  <script>
+    const useIndexes = [6, 2, 8, 1, 0, 3, 10, 11, 12];
+
+    fetch("videos.json")
+      .then(response => response.json())
+      .then(videos => {
+        const container = document.getElementById("videoContainer");
+        useIndexes.forEach(i => {
+          const video = videos[i];
+          const wrapper = document.createElement("div");
+          wrapper.className = "video-wrapper";
+
+          const iframe = document.createElement("iframe");
+          iframe.src = video.src;
+          iframe.allow = "autoplay";
+
+          const label = document.createElement("div");
+          label.className = "number-label";
+          label.textContent = video.label;
+
+          wrapper.appendChild(iframe);
+          wrapper.appendChild(label);
+          container.appendChild(wrapper);
+        });
+      });
+  </script>
 </body>
 </html>

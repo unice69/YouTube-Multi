@@ -54,31 +54,37 @@
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/pgozGEvc4N4?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">茨城県 鹿島灘</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/cPClFiW0y3w?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">神奈川県 湘南↖</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/_Upz1dlQgpg?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">静岡県 下田市</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/x7oJB_dhv3I?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">静岡 御前崎市</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/DyBIT8goWDo?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">和歌山 白浜町</div>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/T3uOuFisD4A?autoplay=1" allow="autoplay"></iframe>
-            <div class="number-label">宮崎県 日南市</div>
-        </div>
-    </div>
+  <div class="video-container" id="videoContainer"></div>
+
+  <script>
+    const useIndexes = [13, 10, 14, 15, 16, 12];
+
+    fetch("videos.json")
+      .then(response => response.json())
+      .then(videos => {
+        const container = document.getElementById("videoContainer");
+        useIndexes.forEach(i => {
+          const video = videos[i];
+          const wrapper = document.createElement("div");
+          wrapper.className = "video-wrapper";
+
+          const iframe = document.createElement("iframe");
+          iframe.src = video.src;
+          iframe.allow = "autoplay";
+
+          const label = document.createElement("div");
+          label.className = "number-label";
+          label.textContent = video.label;
+
+          if (i === 0 || i === 2) {
+            label.style.backgroundColor = "rgba(255, 0, 0, 0.7)";
+          }
+
+          wrapper.appendChild(iframe);
+          wrapper.appendChild(label);
+          container.appendChild(wrapper);
+        });
+      });
+  </script>
 </body>
 </html>
